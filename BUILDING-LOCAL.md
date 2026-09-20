@@ -16,10 +16,11 @@ make
 The uploadable file is `build/firmware.uf2`. This builds the custom face
 selection in `movement_config.h`.
 
-Main rotation: Clock, World Clock 2, Sunrise/Sunset, Moon Phase, Fast Stopwatch,
-Timer, Advanced Alarm, Days Since, Ish, Tally, Pulsometer.
+Main rotation: Clock, Ish, World Clock 2, Sunrise/Sunset, Moon Phase,
+Fast Stopwatch, Timer, Days Since, Tally, Pulsometer.
 
-Secondary list (hold MODE from Clock): Temperature, Battery, Settings, Time Set.
+Secondary list (hold MODE from Clock): Advanced Alarm, Temperature, Battery,
+Settings, Time Set.
 
 The explicit equivalent is:
 
@@ -32,7 +33,9 @@ other build flags; those changes are not tracked by the upstream Makefile.
 
 ## Choose your faces
 
-Edit the `watch_faces` array in `movement_config.h`, then run `make` again.
+Edit the `watch_faces` array in `movement_config.h`, then run `make clean`
+followed by `make`. The current upstream dependency rules can miss header
+changes, so a clean build ensures the new configuration reaches the firmware.
 Available face declarations are in `movement_faces.h`; usage instructions
 usually appear in each face's header under `watch-faces/`.
 
@@ -44,10 +47,10 @@ For example:
 
 `MOVEMENT_SECONDARY_FACE_INDEX` is the zero-based index of the first face
 accessed by holding MODE on the clock. Update it when changing the list.
-The current expression hides the last four faces, starting with temperature
-display. Adding faces to the main rotation keeps that boundary intact. If
+The current expression hides the last five faces, starting with Advanced
+Alarm. Adding faces to the main rotation keeps that boundary intact. If
 adding temperature logging to the secondary list, change the expression to
-`MOVEMENT_NUM_FACES - 5` so temperature display remains its first face.
+`MOVEMENT_NUM_FACES - 6` so Advanced Alarm remains its first face.
 
 Firmware must fit the watch's memory; the linker reports an error if it does not.
 
@@ -105,7 +108,7 @@ git submodule update --init --recursive
 
 Built successfully on macOS ARM64 with Arm GNU Toolchain 15.3.rel1 from
 upstream commit `4a580ee` plus the custom face configuration. The custom UF2 is
-283,648 bytes; the ELF reports 139,224 bytes of text, 2,512 bytes of initialized
+283,648 bytes; the ELF reports 139,216 bytes of text, 2,512 bytes of initialized
 data, and 4,644 bytes of BSS.
 Upstream compiler warnings remain. The UF2 block structure and application
 start address (`0x2000`) were verified. The firmware has not been flashed or
