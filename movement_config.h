@@ -29,12 +29,16 @@
 
 const watch_face_t watch_faces[] = {
     clock_face,
-    world_clock_face,
+    world_clock2_face,
     sunrise_sunset_face,
     moon_phase_face,
     fast_stopwatch_face,
-    countdown_face,
-    alarm_face,
+    timer_face,
+    advanced_alarm_face,
+    days_since_face,
+    ish_face,
+    tally_face,
+    pulsometer_face,
     temperature_display_face,
     voltage_face,
     settings_face,
@@ -49,7 +53,8 @@ const watch_face_t watch_faces[] = {
  * Some folks also like to use this to hide the preferences and time set faces from the normal rotation.
  * If you don't want any faces to be excluded, set this to 0 and a long Mode press will have no effect.
  */
-#define MOVEMENT_SECONDARY_FACE_INDEX (MOVEMENT_NUM_FACES - 5)
+// Keep the final four faces (temperature through time setting) in the secondary list.
+#define MOVEMENT_SECONDARY_FACE_INDEX (MOVEMENT_NUM_FACES - 4)
 
 /* Custom hourly chime tune. Check movement_custom_signal_tunes.h for options. */
 #define SIGNAL_TUNE_DEFAULT

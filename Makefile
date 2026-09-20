@@ -1,16 +1,16 @@
 # Keep this first line.
 GOSSAMER_PATH=gossamer
 
-# Which board are we building for? Commented out to force a choice when building.
+# Default hardware for this checkout: Sensor Watch Classic (green board).
 # Options are:
 # - sensorwatch_pro
 # - sensorwatch_green
 # - sensorwatch_red (also known as Sensor Watch Lite)
 # - sensorwatch_blue
-# BOARD=sensorwatch_pro
+BOARD ?= sensorwatch_green
 
-# Set this to the type of display in your watch: classic or custom. Commented out to force a choice when building.
-# DISPLAY=classic
+# Assumes the original Casio LCD; override with DISPLAY=custom if fitted.
+DISPLAY ?= classic
 
 # End of user configurable options.
 
